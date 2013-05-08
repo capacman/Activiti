@@ -10,7 +10,7 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
 public class KMHJsonConverter extends BaseBpmnJsonConverter {
-	private static final String XML_KMHTASK_DELEGATE_CLASS = "com.globalmaksimum.bpmn.banking.KMHTask";
+	private static final String XML_KMHTASK_DELEGATE_CLASS = "${kmhTaskDelegate}";
 
 	public static void fillTypes(
 			Map<String, Class<? extends BaseBpmnJsonConverter>> convertersToBpmnMap,
@@ -35,7 +35,7 @@ public class KMHJsonConverter extends BaseBpmnJsonConverter {
 	protected FlowElement convertJsonToElement(JsonNode elementNode,
 			JsonNode modelNode, Map<String, JsonNode> shapeMap) {
 		ServiceTask task = new ServiceTask();
-		task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_CLASS);
+		task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_DELEGATEEXPRESSION);
 		task.setImplementation(XML_KMHTASK_DELEGATE_CLASS);
 		return task;
 	}

@@ -12,7 +12,7 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
 public class SalaryIntervalTaskJsonConverter extends BaseBpmnJsonConverter {
-	private static final String XML_SALARYITERVALTASK_DELEGATE_CLASS = "com.globalmaksimum.bpmn.banking.SalaryIntervalTask";
+	private static final String XML_SALARYITERVALTASK_DELEGATE_CLASS = "${salaryIntervalTaskDelegate}";
 	private static final String JSON_SALARYINTERVALTASK_INTERVAL = "salary_interval";
 	private static final String XML_SALARYINTERVALTASK_INTERVAL = "salaryInterval";
 
@@ -40,7 +40,7 @@ public class SalaryIntervalTaskJsonConverter extends BaseBpmnJsonConverter {
 	protected FlowElement convertJsonToElement(JsonNode elementNode,
 			JsonNode modelNode, Map<String, JsonNode> shapeMap) {
 		ServiceTask task = new ServiceTask();
-		task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_CLASS);
+		task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_DELEGATEEXPRESSION);
 		task.setImplementation(XML_SALARYITERVALTASK_DELEGATE_CLASS);
 		String interval = getPropertyValueAsString(
 				JSON_SALARYINTERVALTASK_INTERVAL, elementNode);

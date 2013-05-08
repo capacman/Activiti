@@ -98,6 +98,12 @@ public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants,
     
     // boundary events
     BoundaryEventJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
+    
+    //Globalmaksimum events
+    KMHJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
+    SalaryJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
+    SalaryIntervalTaskJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
+    CreditJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
   }
   
   private static final List<String> DI_CIRCLES = new ArrayList<String>();

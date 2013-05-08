@@ -10,7 +10,7 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.node.ObjectNode;
 
 public class CreditJsonConverter extends BaseBpmnJsonConverter {
-	private static final String XML_CREDITTASK_DELEGATE_CLASS = "com.globalmaksimum.bpmn.banking.CreditTask";
+	private static final String XML_CREDITTASK_DELEGATE_CLASS = "${creditTaskDelegate}";
 
 	public static void fillTypes(
 			Map<String, Class<? extends BaseBpmnJsonConverter>> convertersToBpmnMap,
@@ -35,7 +35,7 @@ public class CreditJsonConverter extends BaseBpmnJsonConverter {
 	protected FlowElement convertJsonToElement(JsonNode elementNode,
 			JsonNode modelNode, Map<String, JsonNode> shapeMap) {
 		ServiceTask task = new ServiceTask();
-		task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_CLASS);
+		task.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_DELEGATEEXPRESSION);
 		task.setImplementation(XML_CREDITTASK_DELEGATE_CLASS);
 		return task;
 	}

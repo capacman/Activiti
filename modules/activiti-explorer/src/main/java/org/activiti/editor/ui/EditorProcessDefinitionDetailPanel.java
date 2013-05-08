@@ -242,6 +242,7 @@ public class EditorProcessDefinitionDetailPanel extends DetailPanel {
             } else {
               BpmnJsonConverter jsonConverter = new BpmnJsonConverter();
               BpmnModel model = jsonConverter.convertToBpmnModel(editorNode);
+              model.setTargetNamespace("http://www.activiti.org/test");
               filename = model.getMainProcess().getId() + ".bpmn20.xml";
               bpmnBytes = new BpmnXMLConverter().convertToXML(model);
             }

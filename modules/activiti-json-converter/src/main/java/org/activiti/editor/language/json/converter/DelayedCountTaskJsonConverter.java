@@ -62,7 +62,7 @@ public class DelayedCountTaskJsonConverter extends BaseBpmnJsonConverter {
 						elementNode) + "'}");
 
 		IOParameter teaserDuration = new IOParameter();
-		duration.setTarget("teaserDuration");
+		teaserDuration.setTarget("teaserDuration");
 		if (StringUtils.isEmpty(getPropertyValueAsString(
 				PROPERTY_TEASERDURATION, elementNode)))
 			teaserDuration.setSourceExpression("${''}");
@@ -72,7 +72,7 @@ public class DelayedCountTaskJsonConverter extends BaseBpmnJsonConverter {
 							elementNode) + "'}");
 		IOParameter teaserText = new IOParameter();
 		teaserText.setTarget("teaserText");
-		teaserDuration.setSourceExpression("${'"
+		teaserText.setSourceExpression("${'"
 				+ getPropertyValueAsString(PROPERTY_TEASERTEXT, elementNode)
 				+ "'}");
 

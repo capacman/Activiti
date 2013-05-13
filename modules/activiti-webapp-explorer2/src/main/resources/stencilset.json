@@ -1422,6 +1422,44 @@
               "optional" : false
           } ]
       }]
+  }, {
+      "type" : "node",
+      "id" : "kmhclose",
+      "title" : "Close KMH Task",
+      "description" : "Close kmh and apply penalty",
+      "view" : "activity/servicetask.svg",
+      "icon" : "activity/list/type.service.png",
+      "groups" : [ "Banking Domain" ],
+      "propertyPackages" : [ "elementbase", "baseattributes" ],
+      "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ],
+      "properties" : [ {
+          "id" : "gm_task_name",
+          "type" : "String",
+          "title" : "TaskName",
+          "value" : "Close KMH",
+          "readonly":true,
+          "optional":false,
+          "refToView" : "text_name"
+      }, {
+          "id" : "terminate",
+          "type" : "Choice",
+          "title" : "Terminate ",
+          "value" : "OFO",
+          "width" : 100,
+          "optional" : false,
+          "popular" : true,
+          "items" : [ {
+              "id" : "c1",
+              "title" : "Yes",
+              "value" : "true",
+              "refToView" : ""
+          }, {
+              "id" : "c2",
+              "title" : "No",
+              "value" : "false",
+              "refToView" : ""
+          } ]
+      }]
   }],
   "rules" : {
     "cardinalityRules" : [ {

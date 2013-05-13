@@ -104,6 +104,8 @@ public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants,
     SalaryJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
     SalaryIntervalTaskJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
     CreditJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
+    DelayedCountTaskJsonConverter.fillTypes(convertersToBpmnMap, convertersToJsonMap);
+    
   }
   
   private static final List<String> DI_CIRCLES = new ArrayList<String>();
@@ -144,6 +146,7 @@ public class BpmnJsonConverter implements EditorJsonConstants, StencilConstants,
     DI_RECTANGLES.add(STENCIL_TASK_KMH);
     DI_RECTANGLES.add(STENCIL_TASK_SALARY);
     DI_RECTANGLES.add(STENCIL_TASK_SALARYINTERVAL);
+    DI_RECTANGLES.add(STENCIL_TASK_DELAYEDCOUNT);
     
     DI_GATEWAY.add(STENCIL_GATEWAY_EVENT);
     DI_GATEWAY.add(STENCIL_GATEWAY_EXCLUSIVE);

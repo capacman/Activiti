@@ -920,7 +920,7 @@
       "popular" : false,
       "refToView" : "compensation"
     } ]
-  } ],
+  }],
   "stencils" : [ {
     "type" : "node",
     "id" : "BPMNDiagram",
@@ -1249,7 +1249,180 @@
     "groups" : [ "Artifacts" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "textannotationbase" ],
     "roles" : [ "all" ]
-  } ],
+  }, {
+      "type" : "node",
+      "id" : "kmh",
+      "title" : "Check KMH",
+      "description" : "Check customer kmh balance",
+      "view" : "activity/servicetask.svg",
+      "icon" : "activity/list/type.service.png",
+      "groups" : [ "Banking Domain" ],
+      "propertyPackages" : [ "elementbase", "baseattributes"],
+      "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ],
+      "properties" : [ {
+          "id" : "gm_task_name",
+          "type" : "String",
+          "title" : "TaskName",
+          "value" : "Check KMH",
+          "readonly":true,
+          "optional":false,
+          "refToView" : "text_name"
+      }]
+
+  }, {
+      "type" : "node",
+      "id" : "credit",
+      "title" : "Check Open Credit",
+      "description" : "Check if customer has open credit",
+      "view" : "activity/servicetask.svg",
+      "icon" : "activity/list/type.service.png",
+      "groups" : [ "Banking Domain" ],
+      "propertyPackages" : [ "elementbase", "baseattributes" ],
+      "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ],
+      "properties" : [ {
+          "id" : "gm_task_name",
+          "type" : "String",
+          "title" : "TaskName",
+          "value" : "Check Open Credit",
+          "readonly":true,
+          "optional":false,
+          "refToView" : "text_name"
+      }]
+  }, {
+      "type" : "node",
+      "id" : "salary",
+      "title" : "Check Salary",
+      "description" : "Check customer if it has maas flag",
+      "view" : "activity/servicetask.svg",
+      "icon" : "activity/list/type.service.png",
+      "groups" : [ "Banking Domain" ],
+      "propertyPackages" : [ "elementbase", "baseattributes"],
+      "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ],
+      "properties" : [ {
+          "id" : "gm_task_name",
+          "type" : "String",
+          "title" : "TaskName",
+          "value" : "Check Salary",
+          "readonly":true,
+          "optional":false,
+          "refToView" : "text_name"
+      }]
+  }, {
+      "type" : "node",
+      "id" : "salaryinterval",
+      "title" : "Check Salary Interval",
+      "description" : "Check customer if his salary paid in given time",
+      "view" : "activity/servicetask.svg",
+      "icon" : "activity/list/type.service.png",
+      "groups" : [ "Banking Domain" ],
+      "propertyPackages" : [ "elementbase", "baseattributes" ],
+      "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ],
+      "properties" : [ {
+          "id" : "gm_task_name",
+          "type" : "String",
+          "title" : "TaskName",
+          "value" : "Check Salary Interval",
+          "readonly":true,
+          "optional":false,
+          "refToView" : "text_name"
+      },{
+          "id" : "salary_interval",
+          "type" : "Integer",
+          "title" : "Check Since",
+          "value" : "90",
+          "optional":false,
+          "description" : "Days to check since customer salary paid ",
+          "popular" : true
+      }]
+  }, {
+      "type" : "node",
+      "id" : "delayedtask",
+      "title" : "Delayed Task",
+      "description" : "Check given task after some interval",
+      "view" : "activity/servicetask.svg",
+      "icon" : "activity/list/type.service.png",
+      "groups" : [ "Banking Domain" ],
+      "propertyPackages" : [ "elementbase", "baseattributes" ],
+      "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ],
+      "properties" : [ {
+          "id" : "gm_task_name",
+          "type" : "String",
+          "title" : "TaskName",
+          "value" : "Check Unique OFO",
+          "readonly":true,
+          "optional":false,
+          "refToView" : "text_name"
+      }, {
+          "id" : "targetservice",
+          "type" : "Choice",
+          "title" : "Check",
+          "value" : "OFO",
+          "width" : 100,
+          "optional" : false,
+          "popular" : true,
+          "items" : [ {
+              "id" : "c1",
+              "title" : "OFO",
+              "value" : "OFO",
+              "refToView" : ""
+          }, {
+              "id" : "c2",
+              "title" : "Credit Card",
+              "value" : "CREDITCARD",
+              "refToView" : ""
+          } ]
+      },{
+          "id" : "timerdurationdefinition",
+          "type" : "String",
+          "title" : "Task Time duration (e.g. PT5M)",
+          "value" : "",
+          "description" : "Define the timer with a ISO-8601 duration.",
+          "popular" : true
+      },{
+          "id" : "teaserduration",
+          "type" : "String",
+          "title" : "Teaser Time duration (e.g. PT5M)",
+          "value" : "",
+          "description" : "Define the timer with a ISO-8601 duration.",
+          "popular" : true
+      },{
+          "id" : "teasertext",
+          "type" : "Text",
+          "title" : "Teaser text",
+          "value" : "",
+          "description" : "Teaser text message.",
+          "popular" : true
+      },{
+          "id" : "extraproperties",
+          "type" : "Complex",
+          "title" : "Extra parameters",
+          "value" : "",
+          "description" : "Definition of the Extra input parameters",
+          "popular" : true,
+          "complexItems" : [ {
+              "id" : "ioparameter_source",
+              "name" : "Source",
+              "type" : "String",
+              "value" : "",
+              "width" : 200,
+              "optional" : false
+          }, {
+              "id" : "ioparameter_sourceexpression",
+              "name" : "Source expression",
+              "type" : "String",
+              "value" : "",
+              "width" : 200,
+              "optional" : false
+          }, {
+              "id" : "ioparameter_target",
+              "name" : "Target",
+              "type" : "String",
+              "value" : "",
+              "width" : 200,
+              "optional" : false
+          } ]
+      }]
+  }],
   "rules" : {
     "cardinalityRules" : [ {
       "role" : "Startevents_all",
@@ -1322,5 +1495,8 @@
       "role" : "TextAnnotation",
       "baseMorphs" : [ "TextAnnotation" ]
     } ]
-  }
+  },
+    "removestencils": [
+        "TextAnnotation"
+    ]
 }

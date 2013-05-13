@@ -67,6 +67,7 @@ public interface StencilConstants {
 	final String STENCIL_TASK_SALARY = "salary";
 	final String STENCIL_TASK_CREDIT = "credit";
 	final String STENCIL_TASK_SALARYINTERVAL = "salaryinterval";
+	final String STENCIL_TASK_DELAYEDCOUNT = "delayedtask";
 
 	final String PROPERTY_VALUE_YES = "Yes";
 	final String PROPERTY_VALUE_NO = "No";

@@ -366,7 +366,7 @@ input.login-field {
 
 .logo {
 	margin:12px 0;
-	background:url(img/logo.png) no-repeat;
+	background:url(img/__logo.png) no-repeat; /*vace*/
 	text-indent:-9999px;
 	width:207px;
 	height:30px;

@@ -41,18 +41,24 @@ public class KMHCloseJsonConverter extends BaseBpmnJsonConverter {
 		callActivity.setCalledElement("kmhcloseprocess");
 		List<IOParameter> parameters = new ArrayList<IOParameter>();
 
+		IOParameter customerid = new IOParameter();
+		customerid.setSource("customerid");
+		customerid.setTarget("customerid");
+
 		IOParameter applicant = new IOParameter();
 		applicant.setSource("applicant");
 		applicant.setTarget("applicant");
 
 		IOParameter terminate = new IOParameter();
 		terminate.setTarget("terminate");
-		terminate.setSourceExpression("${"
-				+ getPropertyValueAsString(PROPERTY_TERMINATE_ACTION,
-						elementNode) + "}");
-
+		if (getPropertyValueAsString(PROPERTY_TERMINATE_ACTION, elementNode)
+				.equalsIgnoreCase("true"))
+			terminate.setSourceExpression("${true}");
+		else
+			terminate.setSourceExpression("${false}");
 		parameters.add(applicant);
 		parameters.add(terminate);
+		parameters.add(customerid);
 		callActivity.getInParameters().addAll(parameters);
 		return callActivity;
 	}

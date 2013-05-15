@@ -80,8 +80,12 @@ public class DelayedCountTaskJsonConverter extends BaseBpmnJsonConverter {
 		applicant.setTarget("applicant");
 		applicant.setSource("applicant");
 		IOParameter count = new IOParameter();
-		count.setSourceExpression("${'0'}");
+		count.setSourceExpression("${0}");
 		count.setTarget("count");
+		
+		IOParameter customerid=new IOParameter();
+		customerid.setSource("customerid");
+		customerid.setTarget("customerid");
 		
 		ioParameters.add(count);
 		ioParameters.add(applicant);
@@ -89,6 +93,7 @@ public class DelayedCountTaskJsonConverter extends BaseBpmnJsonConverter {
 		ioParameters.add(teaserText);
 		ioParameters.add(targetService);
 		ioParameters.add(duration);
+		ioParameters.add(customerid);
 		callActivity.getInParameters().addAll(ioParameters);
 		return callActivity;
 	}

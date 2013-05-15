@@ -1444,7 +1444,7 @@
           "id" : "terminate",
           "type" : "Choice",
           "title" : "Terminate ",
-          "value" : "OFO",
+          "value" : "true",
           "width" : 100,
           "optional" : false,
           "popular" : true,

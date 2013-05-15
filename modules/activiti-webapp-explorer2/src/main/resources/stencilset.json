@@ -1,5 +1,5 @@
 {
-  "title" : "BPMN 2.0",
+  "title" : "Models",
   "namespace" : "http://b3mn.org/stencilset/bpmn2.0#",
   "description" : "This is the BPMN 2.0 stencil set specification.",
   "propertyPackages" : [ {
@@ -945,56 +945,6 @@
     "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
   }, {
     "type" : "node",
-    "id" : "StartTimerEvent",
-    "title" : "Start timer event",
-    "description" : "A start event with a timer trigger",
-    "view" : "startevent/timer.svg",
-    "icon" : "startevent/timer.png",
-    "groups" : [ "Start Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "timerdefinition", "executionlistenersbase" ],
-    "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "StartMessageEvent",
-    "title" : "Start message event",
-    "description" : "A start event with a message trigger",
-    "view" : "startevent/message.svg",
-    "icon" : "startevent/message.png",
-    "groups" : [ "Start Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "messagerefdefinition", "executionlistenersbase" ],
-    "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "StartErrorEvent",
-    "title" : "Start error event",
-    "description" : "A start event that catches a thrown BPMN error",
-    "view" : "startevent/error.svg",
-    "icon" : "startevent/error.png",
-    "groups" : [ "Start Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "errorrefdefinition", "executionlistenersbase" ],
-    "roles" : [ "Startevents_all", "sequence_start", "StartEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "UserTask",
-    "title" : "User task",
-    "description" : "A manual task assigned to a specific person",
-    "view" : "activity/usertask.svg",
-    "icon" : "activity/list/type.user.png",
-    "groups" : [ "Activities" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "usertaskbase", "usertaskassignment", "formdefinition", "tasklistenersbase", "asynchronousbase", "loopcharacteristics", "activity" ],
-    "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "ServiceTask",
-    "title" : "Service task",
-    "description" : "An automatic task with service logic",
-    "view" : "activity/servicetask.svg",
-    "icon" : "activity/list/type.service.png",
-    "groups" : [ "Activities" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "servicetaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
-    "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
-  }, {
-    "type" : "node",
     "id" : "ScriptTask",
     "title" : "Script task",
     "description" : "An automatic task with script logic",
@@ -1005,31 +955,11 @@
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
   }, {
     "type" : "node",
-    "id" : "BusinessRule",
-    "title" : "Business rule task",
-    "description" : "An automatic task with rule logic",
-    "view" : "activity/businessruletask.svg",
-    "icon" : "activity/list/type.business.rule.png",
-    "groups" : [ "Activities" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "ruletaskbase", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
-    "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
-  }, {
-    "type" : "node",
     "id" : "ReceiveTask",
     "title" : "Receive task",
     "description" : "An task that waits for a signal",
     "view" : "activity/receivetask.svg",
     "icon" : "activity/list/type.receive.png",
-    "groups" : [ "Activities" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
-    "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "ManualTask",
-    "title" : "Manual task",
-    "description" : "An automatic task with no logic",
-    "view" : "activity/manualtask.svg",
-    "icon" : "activity/list/type.manual.png",
     "groups" : [ "Activities" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase", "loopcharacteristics", "activity" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "ActivitiesMorph", "all" ]
@@ -1052,16 +982,6 @@
     "icon" : "activity/expanded.subprocess.png",
     "groups" : [ "Structural" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase", "loopcharacteristics" ],
-    "roles" : [ "sequence_start", "Activity", "sequence_end", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "EventSubProcess",
-    "title" : "Event sub process",
-    "description" : "A event sub process scope",
-    "view" : "activity/event.subprocess.svg",
-    "icon" : "activity/event.subprocess.png",
-    "groups" : [ "Structural" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "asynchronousbase", "executionlistenersbase" ],
     "roles" : [ "sequence_start", "Activity", "sequence_end", "all" ]
   }, {
     "type" : "node",
@@ -1095,26 +1015,6 @@
     "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
   }, {
     "type" : "node",
-    "id" : "InclusiveGateway",
-    "title" : "Inclusive gateway",
-    "description" : "An inclusive gateway",
-    "view" : "gateway/inclusive.svg",
-    "icon" : "gateway/inclusive.png",
-    "groups" : [ "Gateways" ],
-    "propertyPackages" : [ "elementbase", "baseattributes" ],
-    "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "EventGateway",
-    "title" : "Event gateway",
-    "description" : "An event gateway",
-    "view" : "gateway/eventbased.svg",
-    "icon" : "gateway/eventbased.png",
-    "groups" : [ "Gateways" ],
-    "propertyPackages" : [ "elementbase", "baseattributes" ],
-    "roles" : [ "sequence_start", "sequence_end", "GatewaysMorph", "all" ]
-  }, {
-    "type" : "node",
     "id" : "BoundaryErrorEvent",
     "title" : "Boundary error event",
     "description" : "A boundary event that catches a BPMN error",
@@ -1123,76 +1023,6 @@
     "groups" : [ "Boundary Events" ],
     "propertyPackages" : [ "elementbase", "baseattributes", "errorrefdefinition" ],
     "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
-  }, {
-    "type" : "node",
-    "id" : "BoundaryTimerEvent",
-    "title" : "Boundary timer event",
-    "description" : "A boundary event with a timer trigger",
-    "view" : "intermediateevent/timer.svg",
-    "icon" : "catching/timer.png",
-    "groups" : [ "Boundary Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "timerdefinition" ],
-    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
-  }, {
-    "type" : "node",
-    "id" : "BoundarySignalEvent",
-    "title" : "Boundary signal event",
-    "description" : "A boundary event with a signal trigger",
-    "view" : "intermediateevent/signal.catching.svg",
-    "icon" : "catching/signal.png",
-    "groups" : [ "Boundary Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition" ],
-    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
-  }, {
-    "type" : "node",
-    "id" : "CatchTimerEvent",
-    "title" : "Intermediate timer catching event",
-    "description" : "An intermediate catching event with a timer trigger",
-    "view" : "intermediateevent/timer.svg",
-    "icon" : "catching/timer.png",
-    "groups" : [ "Intermediate Catching Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "timerdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "CatchSignalEvent",
-    "title" : "Intermediate signal catching event",
-    "description" : "An intermediate catching event with a signal trigger",
-    "view" : "intermediateevent/signal.catching.svg",
-    "icon" : "catching/signal.png",
-    "groups" : [ "Intermediate Catching Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "CatchMessageEvent",
-    "title" : "Intermediate message catching event",
-    "description" : "An intermediate catching event with a message trigger",
-    "view" : "intermediateevent/message.catching.svg",
-    "icon" : "catching/message.png",
-    "groups" : [ "Intermediate Catching Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "messagerefdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "sequence_end", "CatchEventsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "ThrowNoneEvent",
-    "title" : "Intermediate none throwing event",
-    "description" : "An intermediate event without a specific trigger",
-    "view" : "intermediateevent/none.svg",
-    "icon" : "throwing/none.png",
-    "groups" : [ "Intermediate Throwing Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "ThrowEventsMorph", "sequence_end", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "ThrowSignalEvent",
-    "title" : "Intermediate signal throwing event",
-    "description" : "An intermediate event with a signal trigger",
-    "view" : "intermediateevent/signal.throwing.svg",
-    "icon" : "throwing/signal.png",
-    "groups" : [ "Intermediate Throwing Events" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "signalrefdefinition", "executionlistenersbase" ],
-    "roles" : [ "sequence_start", "ThrowEventsMorph", "sequence_end", "all" ]
   }, {
     "type" : "node",
     "id" : "EndNoneEvent",
@@ -1239,16 +1069,6 @@
     } ],
     "propertyPackages" : [ "elementbase", "baseattributes" ],
     "roles" : [ "ConnectingObjectsMorph", "all" ]
-  }, {
-    "type" : "node",
-    "id" : "TextAnnotation",
-    "title" : "Text annotation",
-    "description" : "Annotates elements with description text.",
-    "view" : "artifact/text.annotation.svg",
-    "icon" : "artifact/text.annotation.png",
-    "groups" : [ "Artifacts" ],
-    "propertyPackages" : [ "elementbase", "baseattributes", "textannotationbase" ],
-    "roles" : [ "all" ]
   }, {
       "type" : "node",
       "id" : "kmh",

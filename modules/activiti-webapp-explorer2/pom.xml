@@ -16,8 +16,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+				<jersey.version>1.17</jersey.version>
 	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -74,6 +74,30 @@
 					</webAppConfig>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>eclipselink-staticweave-maven-plugin</artifactId>
+				<groupId>au.com.alderaan</groupId>
+				<version>1.0.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>weave</goal>
+						</goals>
+						<phase>process-classes</phase>
+						<configuration>
+							<logLevel>ALL</logLevel>
+							<includeProjectClasspath>true</includeProjectClasspath>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.persistence</groupId>
+						<artifactId>eclipselink</artifactId>
+						<version>2.5.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -103,6 +127,36 @@
 									</pluginExecutionFilter>
 									<action>
 										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											au.com.alderaan
+										</groupId>
+										<artifactId>
+											eclipselink-staticweave-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0.4,)
+										</versionRange>
+										<goals>
+											<goal>weave</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute></execute>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
@@ -171,6 +225,12 @@
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-explorer</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.activiti</groupId>
@@ -218,6 +278,18 @@
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
         </dependency>
+        
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
 		
 		<!-- Vaadin addons -->
 		<!-- Must be defined both in activiti-explorer and activiti-webapp-explorer, as otherwise the gwt compiler won't find it -->
@@ -227,6 +299,73 @@
             <version>0.10.0</version>
         </dependency>
 
+		<!-- globalmaksimum -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>org.eclipse.persistence.jpa</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey.contribs</groupId>
+			<artifactId>jersey-spring</artifactId>
+			<version>${jersey.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>14.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.6.10</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.12</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -237,6 +376,11 @@
 		<repository>
 			<id>Alfresco thirdparty</id>
 			<url>https://maven.alfresco.com/nexus/content/repositories/thirdparty/</url>
+		</repository>
+		<repository>
+			<id>oss.sonatype.org</id>
+			<name>OSS Sonatype Staging</name>
+			<url>https://oss.sonatype.org/content/groups/staging</url>
 		</repository>
 	</repositories>
 

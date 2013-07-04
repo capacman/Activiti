@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:drools="http://drools.org/schema/drools-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring-1.7.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+	<bean id="customerRepository"
+		class="com.globalmaksimum.bpmn.banking.domain.impl.CustomerRepositoryImpl">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+	
+	<bean class="com.globalmaksimum.bpmn.demo.DataGenerator">
+		<property name="identityService" ref="identityService" />
+	</bean>
+	<bean id="campaignService"
+		class="com.globalmaksimum.bpmn.banking.service.CampaignServiceImpl">
+		<property name="customerRepository" ref="customerRepository" />
+		<property name="processEngine" ref="processEngine" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="customerRepositoryTX"
+			expression="execution(* com.globalmaksimum.bpmn.banking.domain.impl.CustomerRepositoryImpl.*(..))" />
+		<aop:pointcut id="campaignServiceTX"
+			expression="execution(* com.globalmaksimum.bpmn.banking.service.CampaignService.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="customerRepositoryTX" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="campaignServiceTX" />
+	</aop:config>
+
+	<bean id="creditTaskDelegate"
+		class="com.globalmaksimum.bpmn.banking.delegates.CreditTaskDelegate">
+		<property name="customerRepository" ref="customerRepository" />
+	</bean>
+	<bean id="salaryTaskDelegate"
+		class="com.globalmaksimum.bpmn.banking.delegates.FinansMaasTaskDelegate">
+		<property name="customerRepository" ref="customerRepository" />
+	</bean>
+	<bean id="salaryIntervalTaskDelegate"
+		class="com.globalmaksimum.bpmn.banking.delegates.FinansMaasIntervalTaskDelegate">
+		<property name="customerRepository" ref="customerRepository" />
+	</bean>
+	<bean id="kmhTaskDelegate"
+		class="com.globalmaksimum.bpmn.banking.delegates.KmhTaskDelegate">
+		<property name="customerRepository" ref="customerRepository" />
+	</bean>
+
+	<bean id="kmhService" class="com.globalmaksimum.bpmn.banking.service.KmhServiceImpl">
+		<property name="customerRepository" ref="customerRepository" />
+	</bean>
+
+	<bean id="commandExecuter"
+		class="com.globalmaksimum.bpmn.banking.service.ext.CommandExecuter" />
+	<bean id="OFOcommnadBean" class="com.globalmaksimum.bpmn.banking.service.ext.OFOService" />
+	<bean id="myout" class="com.globalmaksimum.persistence.logging.OutTest" />
+
+	<bean id="campaignResource" class="com.globalmaksimum.bpmn.banking.web.CampaignResource">
+		<property name="campaignService" ref="campaignService" />
+	</bean>
+	<bean id="customerResource" class="com.globalmaksimum.bpmn.banking.web.CustomerResource">
+		<property name="customerRepository" ref="customerRepository" />
+	</bean>
+</beans>

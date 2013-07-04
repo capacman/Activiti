@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <signal id="closeKMH" name="closeKMH"></signal>
+  <process id="kmhcloseprocess" isExecutable="true">
+    <startEvent id="startKMHClose"></startEvent>
+    <sequenceFlow id="sid-625B2C82-4189-44A9-8593-728FCDDE5C2C" sourceRef="startKMHClose" targetRef="waitKmhCloseEvent"></sequenceFlow>
+    <intermediateCatchEvent id="waitKmhCloseEvent">
+      <signalEventDefinition signalRef="closeKMH"></signalEventDefinition>
+    </intermediateCatchEvent>
+    <exclusiveGateway id="checkEnforceKMHClose"></exclusiveGateway>
+    <serviceTask id="processKMHClose" activiti:expression="#{kmhService.closeKMH(execution,applicant,kmh)}"></serviceTask>
+    <exclusiveGateway id="checkNumberOfKMH"></exclusiveGateway>
+    <sequenceFlow id="sid-5086DDEA-E2BE-45AB-B137-8DDC8C8C2672" sourceRef="processKMHClose" targetRef="checkNumberOfKMH"></sequenceFlow>
+    <endEvent id="endKMHClose"></endEvent>
+    <sequenceFlow id="sid-EDCC40E0-9DDD-46DE-B719-789484A2C83E" sourceRef="waitKmhCloseEvent" targetRef="checkEnforceKMHClose"></sequenceFlow>
+    <sequenceFlow id="sid-6F52AE59-7FBA-4816-A6C9-3515DBF9B390" sourceRef="checkEnforceKMHClose" targetRef="processKMHClose">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${forceCloseKMH}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-D54C764F-D3A2-4F10-82B8-5687E348011B" sourceRef="checkEnforceKMHClose" targetRef="waitKmhCloseEvent">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!forceCloseKMH}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-6238D753-875A-40F4-8379-AD644FD837BD" sourceRef="checkNumberOfKMH" targetRef="waitKmhCloseEvent">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${applicant.getHasKMH()}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-0920060B-911D-4097-88D7-95D542C5A28F" sourceRef="checkNumberOfKMH" targetRef="endKMHClose">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!applicant.getHasKMH()}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_kmhcloseprocess">
+    <bpmndi:BPMNPlane bpmnElement="kmhcloseprocess" id="BPMNPlane_kmhcloseprocess">
+      <bpmndi:BPMNShape bpmnElement="startKMHClose" id="BPMNShape_startKMHClose">
+        <omgdc:Bounds height="30.0" width="30.0" x="162.0" y="292.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="waitKmhCloseEvent" id="BPMNShape_waitKmhCloseEvent">
+        <omgdc:Bounds height="30.0" width="30.0" x="291.0" y="292.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkEnforceKMHClose" id="BPMNShape_checkEnforceKMHClose">
+        <omgdc:Bounds height="40.0" width="40.0" x="460.0" y="287.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="processKMHClose" id="BPMNShape_processKMHClose">
+        <omgdc:Bounds height="80.0" width="100.0" x="545.0" y="267.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="checkNumberOfKMH" id="BPMNShape_checkNumberOfKMH">
+        <omgdc:Bounds height="40.0" width="40.0" x="750.0" y="287.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endKMHClose" id="BPMNShape_endKMHClose">
+        <omgdc:Bounds height="28.0" width="28.0" x="835.0" y="293.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sid-6F52AE59-7FBA-4816-A6C9-3515DBF9B390" id="BPMNEdge_sid-6F52AE59-7FBA-4816-A6C9-3515DBF9B390">
+        <omgdi:waypoint x="500.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="545.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-6238D753-875A-40F4-8379-AD644FD837BD" id="BPMNEdge_sid-6238D753-875A-40F4-8379-AD644FD837BD">
+        <omgdi:waypoint x="770.0" y="287.0"></omgdi:waypoint>
+        <omgdi:waypoint x="770.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="306.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="306.0" y="292.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-EDCC40E0-9DDD-46DE-B719-789484A2C83E" id="BPMNEdge_sid-EDCC40E0-9DDD-46DE-B719-789484A2C83E">
+        <omgdi:waypoint x="321.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-0920060B-911D-4097-88D7-95D542C5A28F" id="BPMNEdge_sid-0920060B-911D-4097-88D7-95D542C5A28F">
+        <omgdi:waypoint x="790.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="835.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-625B2C82-4189-44A9-8593-728FCDDE5C2C" id="BPMNEdge_sid-625B2C82-4189-44A9-8593-728FCDDE5C2C">
+        <omgdi:waypoint x="192.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="291.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-5086DDEA-E2BE-45AB-B137-8DDC8C8C2672" id="BPMNEdge_sid-5086DDEA-E2BE-45AB-B137-8DDC8C8C2672">
+        <omgdi:waypoint x="645.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="750.0" y="307.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-D54C764F-D3A2-4F10-82B8-5687E348011B" id="BPMNEdge_sid-D54C764F-D3A2-4F10-82B8-5687E348011B">
+        <omgdi:waypoint x="480.0" y="327.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="401.0"></omgdi:waypoint>
+        <omgdi:waypoint x="306.0" y="401.0"></omgdi:waypoint>
+        <omgdi:waypoint x="306.0" y="322.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
